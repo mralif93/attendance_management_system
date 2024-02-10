@@ -1,2 +1,3 @@
-# attendance_management_system
-Attendance Management System
+# Attendance Management System
+
+System Requirements
