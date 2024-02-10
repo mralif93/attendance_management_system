@@ -1,0 +1,52 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>{% block title %} Digital Scoreboard {% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="{% static 'board/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'board/css/bootstrap-icons.css' %}" rel="stylesheet">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'board/css/global.css' %}">
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Custom CSS -->
+  {% block css %}{% endblock css %}
+</head>
+
+<body>
+  <!-- Header -->
+  {% include 'board/master/header.html' %}
+
+  <!-- Content -->
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  {% include 'board/master/footer.html' %}
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="{% static 'board/js/popper.min.js' %}"></script>
+  <script src="{% static 'board/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- jQuery JS -->
+  <script src="{% static 'board/js/jquery.min.js' %}"></script>
+
+  <!-- Global JS -->
+  <script  src="{% static 'board/js/global.js' %}"></script>
+
+  <!-- Custom JS -->
+  {% block js %}{% endblock js %}
+</body>
+
+</html>
