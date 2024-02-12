@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-warning shadow-sm">
+  <div class="container">
+    <a class="navbar-brand" href="/">AMS</a>
+    {% if request.user.is_authenticated %}
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#hiddenMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="hiddenMenu">
+      <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" href="{% url 'dashboard' %}" aria-current="page">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'history' %}">Attendance</a>
+        </li>
+      </ul>
+    </div>
+    <div class="text-end">
+      <div class="dropdown">
+        <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown">{{ request.user }}</button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{% url 'profile' request.user.id %}">Profile</a></li <li>
+          <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</nav>

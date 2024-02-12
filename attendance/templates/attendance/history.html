@@ -1,0 +1,45 @@
+{% extends 'users/master/base.html' %}
+{% load static %}
+
+{% block title %}Attendance Management System{% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table id="tbl_list" class="table table-striped" style="width:100%">
+          <thead class="table-dark">
+            <tr>
+              <th width="15%">Staff ID</th>
+              <th>Name</th>
+              <th class="text-center" width="20%">Clock In</th>
+              <th class="text-center" width="20%">Clock Out</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr class="">
+              <td>{{ record.user.username }}</td>
+              <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
+              <td class="text-center">{{ record.clock_in | date:"h:i A" }}</td>
+              <td class="text-center">{{ record.clock_out | date:"h:i A" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+    // Variables
+    let dt = new DataTable('#tbl_list');
+  });
+</script>
+{% endblock js %}
