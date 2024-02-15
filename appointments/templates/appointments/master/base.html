@@ -1,0 +1,59 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>{% block title %} Attendance Management System {% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="{% static 'appointments/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'appointments/css/bootstrap-icons.min.css' %}" rel="stylesheet">
+
+  <!-- DataTable CSS -->
+  <link href="{% static 'appointments/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="{% static 'appointments/css/animate.min.css' %}">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'appointments/css/global.css' %}">
+
+  <!-- Custom CSS -->
+  {% block css %}{% endblock css %}
+</head>
+
+<body>
+  <!-- Header -->
+  {% include 'appointments/master/header.html' %}
+
+  <!-- Content -->
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  {% include 'appointments/master/footer.html' %}
+
+  <!-- jQuery JS -->
+  <script src="{% static 'appointments/js/jquery.min.js' %}"></script>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="{% static 'appointments/js/popper.min.js' %}"></script>
+  <script src="{% static 'appointments/js/bootstrap.min.js' %}"></script>
+
+  <!-- jQuery DataTables -->
+  <script src="{% static 'appointments/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'appointments/js/dataTables.bootstrap5.min.js' %}"></script>
+
+  <!-- Global JS -->
+  <script  src="{% static 'appointments/js/global.js' %}"></script>
+
+  <!-- Custom JS -->
+  {% block js %}{% endblock js %}
+</body>
+
+</html>
