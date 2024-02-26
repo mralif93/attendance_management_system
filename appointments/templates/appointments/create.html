@@ -1,0 +1,40 @@
+{% extends 'appointments/master/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} Attendance Management System {% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="offset-2 col-8">
+      <h4 class="card-title">New Appointment</h4>
+      <p class="card-subtitle">Please fill all the details.</p>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="offset-2 col-8">
+      <form method="POST">
+        {% csrf_token %}
+        {{ form | crispy }}
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-warning">Submit</button>
+          <a href="{% url 'appointments' %}" type="button" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+  $(document).ready(function() {
+    $('#id_start').attr('type', 'datetime-local');
+    $('#id_end').attr('type', 'datetime-local');
+  });
+</script>
+{% endblock js %}

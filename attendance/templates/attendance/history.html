@@ -6,29 +6,47 @@
 
 {% block content %}
 <div class="container mt-5">
+  <!-- <div class="row">
+    <div class="col-12">
+      <div class="card border border-3 border-warning rounded-4">
+        <div class="card-header bg-warning border-bottom-0">
+          <h4 class="card-title">Search</h4>
+        </div>
+        <div class="card-body">
+          
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <div class="mt-5"></div>
   <div class="row">
     <div class="col-12">
-      <div class="table-responsive">
-        <table id="tbl_list" class="table table-striped" style="width:100%">
-          <thead class="table-dark">
-            <tr>
-              <th width="15%">Staff ID</th>
-              <th>Name</th>
-              <th class="text-center" width="20%">Clock In</th>
-              <th class="text-center" width="20%">Clock Out</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for record in records %}
-            <tr class="">
-              <td>{{ record.user.username }}</td>
-              <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
-              <td class="text-center">{{ record.clock_in | date:"h:i A" }}</td>
-              <td class="text-center">{{ record.clock_out | date:"h:i A" }}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+      <div class="card border border-3 border-warning rounded-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="tbl_list" class="table" style="width:100%">
+              <thead class="table-warning">
+                <tr>
+                  <th width="15%">Staff ID</th>
+                  <th>Name</th>
+                  <th class="text-center" width="20%">Clock In</th>
+                  <th class="text-center" width="20%">Clock Out</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for record in records %}
+                <tr class="">
+                  <td>{{ record.user.username }}</td>
+                  <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
+                  <td class="text-center">{{ record.clock_in | date:"h:i A" }}</td>
+                  <td class="text-center">{{ record.clock_out | date:"h:i A" }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>

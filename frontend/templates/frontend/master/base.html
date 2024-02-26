@@ -1,0 +1,59 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>{% block title %} Attendance Management System {% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="{% static 'frontend/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'frontend/css/bootstrap-icons.min.css' %}" rel="stylesheet">
+
+  <!-- DataTable CSS -->
+  <link href="{% static 'frontend/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'frontend/css/global.css' %}">
+
+  <!-- Custom CSS -->
+  {% block css %}{% endblock css %}
+</head>
+
+<body>
+  <!-- Header -->
+  {% include 'frontend/master/header.html' %}
+
+  <!-- Content -->
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  {% include 'frontend/master/footer.html' %}
+
+  <!-- jQuery JS -->
+  <script src="{% static 'frontend/js/jquery.min.js' %}"></script>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="{% static 'frontend/js/popper.min.js' %}"></script>
+  <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+
+  <!-- jQuery DataTables -->
+  <script src="{% static 'frontend/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'frontend/js/dataTables.bootstrap5.min.js' %}"></script>
+
+  <!-- Global JS -->
+  <script  src="{% static 'frontend/js/global.js' %}"></script>
+
+  <!-- Custom JS -->
+  {% block js %}{% endblock js %}
+</body>
+
+</html>

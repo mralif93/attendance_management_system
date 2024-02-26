@@ -1,0 +1,59 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>{% block title %} Attendance Management System {% endblock title %}</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="{% static 'rooms/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="{% static 'rooms/css/bootstrap-icons.min.css' %}" rel="stylesheet">
+
+  <!-- DataTable CSS -->
+  <link href="{% static 'rooms/css/dataTables.bootstrap5.min.css' %}" rel="stylesheet">
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="{% static 'rooms/css/animate.min.css' %}">
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'rooms/css/global.css' %}">
+
+  <!-- Custom CSS -->
+  {% block css %}{% endblock css %}
+</head>
+
+<body>
+  <!-- Header -->
+  {% include 'rooms/master/header.html' %}
+
+  <!-- Content -->
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  {% include 'rooms/master/footer.html' %}
+
+  <!-- jQuery JS -->
+  <script src="{% static 'rooms/js/jquery.min.js' %}"></script>
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="{% static 'rooms/js/popper.min.js' %}"></script>
+  <script src="{% static 'rooms/js/bootstrap.min.js' %}"></script>
+
+  <!-- jQuery DataTables -->
+  <script src="{% static 'rooms/js/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'rooms/js/dataTables.bootstrap5.min.js' %}"></script>
+
+  <!-- Global JS -->
+  <script  src="{% static 'rooms/js/global.js' %}"></script>
+
+  <!-- Custom JS -->
+  {% block js %}{% endblock js %}
+</body>
+
+</html>

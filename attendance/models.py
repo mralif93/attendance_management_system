@@ -4,7 +4,7 @@ from users.models import User
 # Create your models here.
 
 class Attendance(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
   clock_in = models.DateTimeField(blank=True, null=True)
   clock_out = models.DateTimeField(blank=True, null=True)
   created_at = models.DateTimeField(auto_now_add=True)

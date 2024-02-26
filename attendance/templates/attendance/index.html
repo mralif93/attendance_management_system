@@ -1,0 +1,241 @@
+{% extends 'attendance/master/base.html' %}
+{% load static %}
+
+{% block title %}Attendance Management System{% endblock title %}
+{% block css %}
+<style>
+  .btn-custom {
+    font-size: 24px !important;
+    height: 100px !important;
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-6 text-start">
+      <h4 class="title-subtitle text-uppercase fw-bold">Date: {% now "d/m/Y" %}</h4>
+    </div>
+    <div class="col-6 text-end">
+      <h4 class="card-subtitle text-uppercase fw-bold">Time: <span id="time">00:00:00 AM/PM</span></h4>
+    </div>
+  </div>
+
+  {% if messages %}
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+  
+  <div class="card border border-3 border-warning rounded-4">
+    <div class="card-header bg-warning border-0">
+      <h4 class="card-title fw-bold">Welcome, Attendance Management System!</h4>
+      <p class="card-subtitle">Kindly clock in / clock out your attendance.</p>
+    </div>
+    <div class="card-body">
+      <div class="row text-center">
+        <div class="col-6 p-4">
+          <h1 class="mb-3">Clock In</h1>
+          <img src="{% static 'attendance/images/clock-in.png' %}" class="img-fluid rounded-top" alt="Clock In"
+            width="200" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="In" data-bs-action="clock-in" />
+        </div>
+        <div class="col-6 p-4">
+          <h1 class="mb-3">Clock Out</h1>
+          <img src="{% static 'attendance/images/clock-out.png' %}" class="img-fluid rounded-top" alt="Clock out"
+            width="200" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="Out" data-bs-action="clock-out" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+  <div class="card border border-3 border-warning rounded-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="tbl_list" class="table" style="width:100%">
+          <thead class="table-warning">
+            <tr>
+              <th width="15%">Staff ID</th>
+              <th>Name</th>
+              <th class="text-center" width="20%">Clock In</th>
+              <th class="text-center" width="20%">Clock Out</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in records %}
+            <tr class="">
+              <td>{{ record.user.username }}</td>
+              <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
+              <td class="text-center">{{ record.clock_in | date:"h:i A" }}</td>
+              <td class="text-center">{{ record.clock_out | date:"h:i A" }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal" data-bs-backdrop="static" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5">Clock</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="form" action="/attendance/clock/" method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" id="staffId"  name="username" class="form-control form-control-lg" placeholder="Staff ID" />
+          </div>
+          <div class="row">
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('1')">1</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('2')">2</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('3')">3</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('4')">4</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('5')">5</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('6')">6</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('7')">7</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('8')">8</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('9')">9</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" id="clear" class="btn btn-secondary btn-custom">Clear</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="button" class="btn btn-secondary btn-custom" onclick="field('0')">0</button>
+              </div>
+            </div>
+            <div class="col-4 text-center">
+              <div class="d-grid gap-2 pb-2 pt-2">
+                <button type="submit" id="enter" class="btn btn-secondary btn-custom">Enter</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Submit</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+    // Variables
+    let dt = new DataTable('#tbl_list');
+    let time = document.getElementById('time');
+
+    setInterval(() => {
+      let currentTime = new Date();
+      let currentTimeFormat = currentTime.toLocaleString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+      });
+      time.innerHTML = String(currentTimeFormat);
+    }, 1000);
+
+    // Modal Configure
+    const modalClock = document.getElementById('modal');
+    if (modalClock) {
+      modalClock.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget
+        const recipient = button.getAttribute('data-bs-title');
+        const action = button.getAttribute('data-bs-action');
+
+        // Update the modal's content.
+        const modalTitle = modalClock.querySelector('.modal-title');
+        modalTitle.textContent = `Clock ${recipient}`;
+
+        const formAction = modalClock.querySelector('#form');
+        // formAction.action = `/attendance/${action}/`;
+      });
+    }
+  });
+
+  const modal = new bootstrap.Modal('#modal', {
+    keyboard: false
+  });
+
+  // Variables
+  const input_value = $('#staffId');
+
+  //  Methods
+  function field(value) {
+    input_value.val(input_value.val() + value);
+  }
+
+  // Clear
+  $("#clear").click(function () {
+    input_value.val("");
+  });
+
+  // Enter
+  // $("#enter").click(function () {
+  //   alert("Your ID " + input_value.val() +". Thank you!");
+  //   input_value.val('');
+  //   modal.hide();
+  // });
+
+</script>
+{% endblock js %}
