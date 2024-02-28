@@ -14,29 +14,29 @@
 {% block content %}
 <div class="container mt-5">
   <div class="row">
-    <div class="col-4">
+    <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
       <a href="{% url 'attendances' %}" class="text-decoration-none">
         <div class="card rounded-4 border-warning border border-3 shadow-sm">
-          <img src="{% static 'frontend/images/checklist-outline-1.svg' %}" class="card-img-top p-5" alt="Attendance">
+          <img src="{% static 'frontend/images/checklist-outline-1.svg' %}" class="card-img-top p-4" alt="Attendance">
           <div class="card-body text-center">
             <h4 class="card-title text-uppercase fw-bold">Attendance</h4>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
       <a href="{% url 'meeting' %}" class="text-decoration-none">
         <div class="card rounded-4 border-warning border border-3 shadow-sm">
-          <img src="{% static 'frontend/images/calendar-outline.svg' %}" class="card-img-top p-5" alt="Attendance">
+          <img src="{% static 'frontend/images/calendar-outline.svg' %}" class="card-img-top p-4" alt="Attendance">
           <div class="card-body text-center">
             <h4 class="card-title text-uppercase fw-bold">Meeting Room</h4>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-4">
+    <div class="col-sm-12 col-md-4 col-lg-4 mb-4">
       <div class="card rounded-4 border-warning border border-3 shadow-sm">
-        <img src="{% static 'frontend/images/question-outline.svg' %}" class="card-img-top p-5" alt="Attendance">
+        <img src="{% static 'frontend/images/question-outline.svg' %}" class="card-img-top p-4" alt="Attendance">
         <div class="card-body text-center">
           <h4 class="card-title text-uppercase fw-bold">Search</h4>
         </div>
@@ -46,65 +46,4 @@
 </div>
 {% endblock content %}
 
-{% block js %}
-<script>
-  $(document).ready(function() {
-    // Variables
-    let dt = new DataTable('#tbl_list');
-    let time = document.getElementById('time');
-
-    setInterval(() => {
-      let currentTime = new Date();
-      let currentTimeFormat = currentTime.toLocaleString('en-US', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: true,
-      });
-      time.innerHTML = String(currentTimeFormat);
-    }, 1000);
-
-    // Modal Configure
-    const modalClock = document.getElementById('modal');
-    if (modalClock) {
-      modalClock.addEventListener('show.bs.modal', event => {
-        const button = event.relatedTarget
-        const recipient = button.getAttribute('data-bs-title');
-        const action = button.getAttribute('data-bs-action');
-
-        // Update the modal's content.
-        const modalTitle = modalClock.querySelector('.modal-title');
-        modalTitle.textContent = `Clock ${recipient}`;
-
-        const formAction = modalClock.querySelector('#form');
-        formAction.action = `/${action}/`;
-      });
-    }
-  });
-
-  const modal = new bootstrap.Modal('#modal', {
-    keyboard: false
-  });
-
-  // Variables
-  const input_value = $('#staffId');
-
-  //  Methods
-  function field(value) {
-    input_value.val(input_value.val() + value);
-  }
-
-  // Clear
-  $("#clear").click(function () {
-    input_value.val("");
-  });
-
-  // Enter
-  // $("#enter").click(function () {
-  //   alert("Your ID " + input_value.val() +". Thank you!");
-  //   input_value.val('');
-  //   modal.hide();
-  // });
-
-</script>
-{% endblock js %}
+{% block js %}{% endblock js %}

@@ -12,7 +12,7 @@
 {% endblock css %}
 
 {% block content %}
-<div class="container mt-5 mb-5">
+<div class="container mt-4 mb-5">
   <div class="row mb-3">
     <div class="col-6 text-start">
       <h4 class="title-subtitle text-uppercase fw-bold">Date: {% now "d/m/Y" %}</h4>
@@ -44,12 +44,12 @@
       <div class="row text-center">
         <div class="col-6 p-4">
           <h1 class="mb-3">Clock In</h1>
-          <img src="{% static 'attendance/images/clock-in.png' %}" class="img-fluid rounded-top" alt="Clock In"
+          <img src="{% static 'attendance/images/clock-in.png' %}" class="img-fluid rounded-top p-4" alt="Clock In"
             width="200" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="In" data-bs-action="clock-in" />
         </div>
         <div class="col-6 p-4">
           <h1 class="mb-3">Clock Out</h1>
-          <img src="{% static 'attendance/images/clock-out.png' %}" class="img-fluid rounded-top" alt="Clock out"
+          <img src="{% static 'attendance/images/clock-out.png' %}" class="img-fluid rounded-top p-4" alt="Clock out"
             width="200" data-bs-toggle="modal" data-bs-target="#modal" data-bs-title="Out" data-bs-action="clock-out" />
         </div>
       </div>
