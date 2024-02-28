@@ -78,3 +78,8 @@ def ClockingView(request):
       messages.error(request, e)
 
   return redirect('attendances')
+
+
+def ScannerView(request):
+  context = {}
+  return render(request, 'attendance/scanner.html', context)

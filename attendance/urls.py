@@ -6,4 +6,5 @@ urlpatterns = [
   path('history/', views.HistoryView, name='history'),
   path('clocking/', views.ClockingView, name='clocking'),
   path('report/<int:id>/', views.ReportView, name='report'),
+  path('qr-scanner/', views.ScannerView, name='scanner'),
 ]
