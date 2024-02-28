@@ -2,14 +2,15 @@ from django.http import HttpResponseServerError, HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.utils import timezone
+from datetime import datetime
 from .models import Attendance, User
 
 # Create your views here.
 def IndexView(request):
   # get current datetime
-  today = timezone.now()
-  records = Attendance.objects.filter(clock_in__year=today.year, clock_in__month=today.month, clock_in__day=today.day).order_by('-created_at')
+  today = datetime.now()
+  # search records
+  records = Attendance.objects.filter(clock_in__date=today.date()).order_by('-created_at')
   context = {
     'records': records,
   }
@@ -30,7 +31,7 @@ def ReportView(request, id):
     user = User.objects.get(username=id)
 
     # get current datetime
-    today = timezone.now()
+    today = datetime.now()
 
     # search attendance list
     attendances = Attendance.objects.filter(user=user)
@@ -48,7 +49,7 @@ def ReportView(request, id):
   return render(request, 'attendance/report.html', context)
 
 
-def ClockView(request):
+def ClockingView(request):
   if request.method == "POST":
     username = request.POST['username']
 
@@ -56,14 +57,14 @@ def ClockView(request):
       # get user
       user = User.objects.get(username=username)
       # get current datetime
-      today = timezone.now()
+      today = datetime.now()
 
       # search for existing record of the same day and user
-      existing = Attendance.objects.filter(user=user).filter(clock_in__date=today.date()).first()
+      existing = Attendance.objects.filter(employee=user).filter(clock_in__date=today.date()).first()
 
       if existing is None:
         # create a new attendance record
-        new_record = Attendance(user=user, clock_in=today, created_at=today)
+        new_record = Attendance(employee=user, clock_in=today, created_at=today)
         new_record.save()
         messages.success(request, f"Successfully clocked in as {username}.")
       else:

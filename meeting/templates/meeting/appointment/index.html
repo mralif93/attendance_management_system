@@ -1,0 +1,80 @@
+{% extends 'meeting/master/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} Attendance Management System {% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="card-title">List of Booking Meeting Room</h4>
+      <p class="card-subtitle">Booking details for meeting room</p>
+    </div>
+  </div>
+
+  {% if messages %}
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="col-12">
+      <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+
+  <div class="mt-3"></div>
+  <div class="row">
+    <div class="col-12 text-end">
+      <a href="{% url 'create_appointment' %}" type="button" class="btn btn-warning">Booking Meeting Room</a>
+    </div>
+    <div class="mt-4"></div>
+    <div class="col-12">
+      <div class="card border border-3 border-warning rounded-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="tbl_list" class="table">
+              <thead class="table-warning">
+                <tr>
+                  <th>No.</th>
+                  <th>Title</th>
+                  <th>Meeting Room</th>
+                  <th class="text-center">Start</th>
+                  <th class="text-center">End</th>
+                  <th class="text-center">Status</th>
+                  <th class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                  <td>{{ forloop.counter }}.</td>
+                  <td><a href="{% url 'update_appointment' appointment.id %}">{{ appointment.title }}</a></td>
+                  <td>{{ appointment.room.name }}</td>
+                  <td class="text-center">{{ appointment.start | date:'d/m/Y H:m A' }}</td>
+                  <td class="text-center">{{ appointment.end | date:'d/m/Y H:m A' }}</td>
+                  <td class="text-center">{{ appointment.status }}</td>
+                  <td class="text-center"><a href="{% url 'delete_appointment' appointment.id %}">Delete</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script>
+  $(document).ready(function() {
+    let dt = new DataTable('#tbl_list');
+  });
+</script>
+{% endblock js %}

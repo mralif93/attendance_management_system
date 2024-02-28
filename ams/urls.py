@@ -22,9 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('frontend.urls')),
     path('attendance/', include('attendance.urls')),
-    path('appointments/', include('appointments.urls')),
-    path('rooms/', include('rooms.urls')),
-    path('users/', include('users.urls')),
+    path('employee/', include('employee.urls')),
+    path('meeting/', include('meeting.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,4 +1,4 @@
-{% extends 'users/master/base.html' %}
+{% extends 'attendance/master/base.html' %}
 {% load static %}
 
 {% block title %}Attendance Management System{% endblock title %}
@@ -6,29 +6,15 @@
 
 {% block content %}
 <div class="container mt-5">
-  <!-- <div class="row">
-    <div class="col-12">
-      <div class="card border border-3 border-warning rounded-4">
-        <div class="card-header bg-warning border-bottom-0">
-          <h4 class="card-title">Search</h4>
-        </div>
-        <div class="card-body">
-          
-        </div>
-      </div>
-    </div>
-  </div> -->
-
-  <div class="mt-5"></div>
   <div class="row">
     <div class="col-12">
       <div class="card border border-3 border-warning rounded-4">
         <div class="card-body">
           <div class="table-responsive">
             <table id="tbl_list" class="table" style="width:100%">
-              <thead class="table-warning">
+              <thead>
                 <tr>
-                  <th width="15%">Staff ID</th>
+                  <th width="8%">Staff ID</th>
                   <th>Name</th>
                   <th class="text-center" width="20%">Clock In</th>
                   <th class="text-center" width="20%">Clock Out</th>
@@ -37,10 +23,10 @@
               <tbody>
                 {% for record in records %}
                 <tr class="">
-                  <td>{{ record.user.username }}</td>
-                  <td>{{ record.user.first_name }} {{ record.user.last_name }}</td>
-                  <td class="text-center">{{ record.clock_in | date:"h:i A" }}</td>
-                  <td class="text-center">{{ record.clock_out | date:"h:i A" }}</td>
+                  <td>{{ record.employee.username }}</td>
+                  <td>{{ record.employee.first_name }} {{ record.employee.last_name }}</td>
+                  <td class="text-center">{{ record.clock_in | date:"d/m/Y h:i A" }}</td>
+                  <td class="text-center">{{ record.clock_out | date:"d/m/Y h:i A" }}</td>
                 </tr>
                 {% endfor %}
               </tbody>
@@ -57,7 +43,41 @@
 <script>
   $(document).ready(function() {
     // Variables
-    let dt = new DataTable('#tbl_list');
-  });
+    var table = new DataTable('#tbl_list', {
+      ordering: true,
+      paging: true,
+      info: true,
+      buttons: [
+        {
+          extend: 'copy',
+          text: 'Copy',
+          className: 'btn-warning'
+        },
+        {
+          extend: 'csv',
+          text: 'CSV',
+          className: 'btn-warning'
+        },
+        {
+          extend: 'excel',
+          text: 'Excel',
+          className: 'btn-warning'
+        }, 
+        {
+          extend: 'pdf',
+          text: 'PDF',
+          className: 'btn-warning'
+        },
+        {
+          extend: 'print',
+          text: 'Print',
+          className: 'btn-warning'
+        }
+      ],
+      layout: {
+        topStart: 'buttons'
+      }
+    });
+});
 </script>
 {% endblock js %}

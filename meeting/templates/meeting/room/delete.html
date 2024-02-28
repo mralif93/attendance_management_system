@@ -1,0 +1,37 @@
+{% extends 'meeting/master/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} Attendance Management System {% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="offset-2 col-8">
+      <h4 class="card-title">Delete Meeting Room</h4>
+      <p class="card-subtitle">Confirmation to remove the meeting room.</p>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="offset-2 col-8">
+      <div class="text-center mb-5">
+        <h4 class="card-title">Are you sure?</h4>
+        <p class="card-subtitle">Do you confirm to delete the meeting room?</p>
+      </div>
+      <form method="POST">
+        {% csrf_token %}
+        {{ room.name }}
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-warning">Yes</button>
+          <a href="{% url 'rooms' %}" type="button" class="btn btn-secondary">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block js %}{% endblock js %}

@@ -1,0 +1,58 @@
+{% extends 'meeting/master/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} Attendance Management System {% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="card-title">List of Rooms</h4>
+      <p class="card-subtitle">Meeting Room</p>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="col-12 text-end">
+      <a href="{% url 'create_room' %}" type="button" class="btn btn-warning">New Room</a>
+    </div>
+    <div class="mt-4"></div>
+    <div class="col-12">
+      <div class="table-responsive">
+        <table id="tbl_list" class="table">
+          <thead class="table-warning">
+            <tr>
+              <th width="5%">No.</th>
+              <th width="20%">Name</th>
+              <th width="55%">Description</th>
+              <th witdh="10%">Status</th>
+              <th width="10%" class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for room in rooms %}
+            <tr>
+              <td>{{ forloop.counter }}.</td>
+              <td><a href="{% url 'update_room' room.id %}">{{ room.name }}</a></td>
+              <td>{{ room.description }}</td>
+              <td>{{ room.is_active }}</td>
+              <td class="text-center"><a href="{% url 'delete_room' room.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+  $(document).ready(function() {
+    let dt = new DataTable('#tbl_list');
+  });
+</script>
+{% endblock js %}

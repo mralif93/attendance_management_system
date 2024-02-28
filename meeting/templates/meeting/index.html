@@ -1,0 +1,41 @@
+{% extends 'meeting/master/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block title %} Attendance Management System {% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="offset-2 col-4">
+      <a href="{% url 'appointments' %}" class="text-decoration-none">
+        <div class="card rounded-4 border-warning border border-3 shadow-sm">
+          <img src="{% static 'frontend/images/checklist-outline-2.svg' %}" class="card-img-top p-5" alt="Booking">
+          <div class="card-body text-center">
+            <h4 class="card-title text-uppercase fw-bold">Booking</h4>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="col-4">
+      <a href="#" class="text-decoration-none">
+        <div class="card rounded-4 border-warning border border-3 shadow-sm">
+          <img src="{% static 'frontend/images/files-and-folder-outline.svg' %}" class="card-img-top p-5" alt="History">
+          <div class="card-body text-center">
+            <h4 class="card-title text-uppercase fw-bold">History</h4>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-5"></div>
+  <div class="row">
+    <div class="offset-2 col-8 text-center">
+      <a href="{% url 'landing' %}" class="btn btn-warning btn-lg">Back to Home</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block js %}{% endblock js %}
