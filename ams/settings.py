@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     # Custom Plugin
     'crispy_forms',
     'crispy_bootstrap5',
-    'djongo',
 
     # Custom App
     'attendance',
