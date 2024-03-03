@@ -5,6 +5,17 @@ from django.contrib import messages
 from datetime import datetime
 from .models import Attendance, User
 
+from pathlib import Path
+import environ
+import os
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Take environment variables from .env file
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Create your views here.
 def IndexView(request):
   # get current datetime
@@ -83,5 +94,7 @@ def ClockingView(request):
 
 
 def QRScanView(request):
+  encryption_key = env('QR_KEY')
+  print(encryption_key)
   context = {}
   return render(request, 'attendance/qrscan.html', context)

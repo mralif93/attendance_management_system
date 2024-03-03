@@ -16,6 +16,17 @@ from PIL import Image
 from io import BytesIO
 import base64
 
+from pathlib import Path
+import environ
+import os
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Take environment variables from .env file
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+
 # Create your views here.
 
 @login_required()
@@ -149,7 +160,9 @@ def QRCodeView(request, id):
     employee = User.objects.get(id=id)
     # we need to define the encryption key
     # fernet can handle this with using generate_key() method
-    encryption_key = Fernet.generate_key()
+    # encryption_key = Fernet.generate_key()
+    encryption_key = env('QR_KEY')
+    print(encryption_key)
     # now create out Fernet object
     cipher_suite = Fernet(encryption_key)
     # convert string to bytes
