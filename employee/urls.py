@@ -8,4 +8,5 @@ urlpatterns = [
   path('logout/', views.LogoutView, name='logout'),
   path('profile/<int:id>/', views.ProfileView, name='profile'),
   path('dashboard/', views.DashboardView, name='dashboard'),
+  path('qrcode/<int:id>/', views.QRCodeView, name='qrcode'),
 ]

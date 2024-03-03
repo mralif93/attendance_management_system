@@ -11,6 +11,9 @@ django-environ = "*"
 crispy-bootstrap5 = "*"
 psycopg2-binary = "*"
 pillow = "*"
+qrcode = "*"
+pycryptodome = "*"
+cryptography = "*"
 
 [dev-packages]
 

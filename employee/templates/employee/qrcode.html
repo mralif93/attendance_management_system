@@ -1,0 +1,57 @@
+{% extends 'employee/master/base.html' %}
+{% load static %}
+
+{% block title %}Attendance Management System{% endblock title %}
+{% block css %}{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  {% if employee %}
+  <div class="row">
+    <div class="col-12 text-center">
+      <h4 class="card-title fw-bold text-uppercase">{{ employee.first_name }} {{ employee.last_name }}</h4>
+      <p class="card-subtitle">{{ employee.username }}</p>
+    </div>
+  </div>
+  {% endif %}
+  {% if qr_image_base64 %}
+  <div class="row">
+    <div class="col-12 text-center">
+        <img src="data:image/png;base64,{{ qr_image_base64 }}" alt="QR Code">
+        <div class="download-share-buttons">
+          <button class="btn btn-warning" onclick="downloadQR()">Download</button>
+          <button class="btn btn-warning" onclick="shareQR()">Share</button>
+        </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock content %}
+{% block js %}
+<script>
+  function downloadQR() {
+    const link = document.createElement('a');
+    link.href = 'data:image/png;base64,{{ qr_image_base64 }}';
+    link.download = 'qr_code.png';
+    link.click();
+  }
+
+  function shareQR() {
+    const dataUrl = 'data:image/png;base64,{{ qr_image_base64 }}';
+    if (navigator.share) {
+      navigator.share({
+        title: 'QR Code',
+        text: 'Check out this QR Code',
+        url: dataUrl
+      })
+        .then(() => console.log('Shared successfully'))
+        .catch((error) => console.log('Error sharing:', error));
+    } else {
+      const newWindow = window.open(dataUrl);
+      if (!newWindow) {
+        alert('Pop-up blocked. Please allow pop-ups for this website and try again.');
+      }
+    }
+  }
+</script>
+{% endblock js %}

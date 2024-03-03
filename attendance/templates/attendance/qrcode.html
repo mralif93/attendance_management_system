@@ -1,0 +1,101 @@
+{% extends 'attendance/master/base.html' %}
+{% load static %}
+
+{% block title %}Attendance Management System{% endblock title %}
+{% block css %}
+<style>
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #reader {
+    width: 600px;
+  }
+
+  #result {
+    text-align: center;
+    font-size: 1.5rem;
+  }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-12">
+      <h4 class="card-title text-center">QR Scanner</h4>
+
+      <div class="text-center">
+        {{ employee.first_name }} {{ employee.last_name }} <br />
+        {{ employee.username }} <br /><br />
+
+        {% if employee %}
+        <img src=`{{ MEDIA_URL }}{% static  'qrcode/103950' %}.png` alt="QRCode">
+        {% endif %}
+      </div>
+      <!-- <main>
+        <div id="reader"></div>
+        <div id="result"></div>
+        <div id="qrcode"></div>
+      </main> -->
+    </div>
+  </div>
+</div>
+{% endblock content %}
+
+{% block js %}
+<!-- QR Scanner Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // console.log('ready!');
+
+    // // Encrypted
+    // var encrypted = CryptoJS.AES.encrypt("103904", "secret");
+    // console.log(encrypted.toString());
+    // var decrypted = CryptoJS.AES.decrypt(encrypted, "secret");
+    // console.log(decrypted.toString(CryptoJS.enc.Utf8));
+
+    // // QR Generate
+    // var qrcode = new QRCode(document.getElementById("qrcode"), {
+    //   text: "103950",
+    //   width: 150,
+    //   height: 150,
+    //   colorDark : "#000000",
+    //   colorLight : "#ffffff",
+    //   correctLevel : QRCode.CorrectLevel.H
+    // });
+
+
+    // // QR Scanner
+    // const scanner = new Html5QrcodeScanner('reader', {
+    //   qrcode: {
+    //     width: 250,
+    //     height: 250,
+    //   },
+    //   fps: 20,
+    // });
+
+    // scanner.render(success, error);
+
+    // function success(result) {
+    //   console.log(result);
+    //   document.getElementById('result').innerHTML = `
+    //   <h2>Success!</h2>
+    //   <p class='fw-bold'>${result}</p>`;
+
+    //   scanner.clear();
+    //   document.getElementById('reader').remove();
+    // }
+
+    // function error(err) {
+    //   console.error(err);
+    // }
+
+  });
+</script>
+{% endblock js %}

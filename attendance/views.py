@@ -16,6 +16,7 @@ def IndexView(request):
   }
   return render(request, 'attendance/index.html', context)
 
+
 @login_required()
 def HistoryView(request):
   records = Attendance.objects.all().order_by('-created_at')
@@ -23,6 +24,7 @@ def HistoryView(request):
     'records': records,
   }
   return render(request, 'attendance/history.html', context)
+
 
 @login_required()
 def ReportView(request, id):
@@ -80,6 +82,6 @@ def ClockingView(request):
   return redirect('attendances')
 
 
-def ScannerView(request):
+def QRScanView(request):
   context = {}
-  return render(request, 'attendance/scanner.html', context)
+  return render(request, 'attendance/qrscan.html', context)

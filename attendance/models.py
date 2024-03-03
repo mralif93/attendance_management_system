@@ -6,6 +6,7 @@ class Attendance(models.Model):
   employee = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
   clock_in = models.DateTimeField(blank=True, null=True)
   clock_out = models.DateTimeField(blank=True, null=True)
+  remark = models.TextField(blank=True, null=True)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
