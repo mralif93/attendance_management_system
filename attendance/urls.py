@@ -8,4 +8,5 @@ urlpatterns = [
   path('report/<int:id>/', views.ReportView, name='report'),
   # path('qrcode/', views.QRCodeView, name='qrcode'),
   path('qr-scan/', views.QRScanView, name='qrscan'),
+  path('qr-scanner/<str:id>/', views.QRScannerView, name='qrscanner'),
 ]

@@ -98,3 +98,12 @@ def QRScanView(request):
   print(encryption_key)
   context = {}
   return render(request, 'attendance/qrscan.html', context)
+
+
+def QRScannerView(request, id):
+  encryption_key = env('QR_KEY')
+  print(encryption_key)
+  print(id)
+
+  context = {}
+  return render(request, 'attendance/qrscanner.html', context)

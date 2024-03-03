@@ -175,7 +175,7 @@ def QRCodeView(request, id):
     print(deccrypted_value.decode('utf-8'))
     
     # generate qrcode
-    qr_image = qrcode.make(employee.username, box_size=15)
+    qr_image = qrcode.make(encrypted_value, box_size=10)
     qr_image_pil = qr_image.get_image()
     stream = BytesIO()
     qr_image_pil.save(stream, format='PNG')
