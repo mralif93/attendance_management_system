@@ -28,11 +28,14 @@
           height: 250,
         },
         fps: 20,
+        facingMode: { 
+          exact: "environment"
+        }
       });
       scanner.render(success, error);
 
       function success(result) {
-        console.log(result);
+        alert(result);
         document.getElementById('result').innerHTML = `
         <h2>Success!</h2>
         <p class='fw-bold'>${result}</p>`;
@@ -42,7 +45,7 @@
       }
 
       function error(err) {
-        console.error(err);
+        alert(err);
       }
     });
 </script>
